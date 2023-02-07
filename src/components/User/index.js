@@ -13,6 +13,7 @@ const User = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "accepts":"application/json"
                 },
                 body: JSON.stringify({
                     data: {

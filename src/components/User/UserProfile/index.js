@@ -24,6 +24,7 @@ const UserProfile = () => {
                     headers: {
                         "access-control-allow-origin": "*",
                         "Content-Type": "application/json",
+                        "accepts": "application/json",
                     },
                     body: JSON.stringify({
                         data: {
