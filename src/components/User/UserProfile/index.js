@@ -9,6 +9,7 @@ import {
 } from 'react-accessible-accordion';
 import MealDetails from './MealDetails';
 import 'react-accessible-accordion/dist/fancy-example.css';
+import axios from 'axios';
 
 
 const UserProfile = () => {
@@ -17,34 +18,22 @@ const UserProfile = () => {
 
     useEffect(() => {
         if (paramsData.userProfileId) {
-            fetch(
-                "https://us-central1-oceanfriends-71bae.cloudfunctions.net/get2daysmeal",
-                {
-                    method: "POST",
-                    mode: 'no-cors',
-                    headers: {
-                        "Access-Control-Allow-Origin": "*",
-                        "Content-Type": "application/json",
-                        "accepts": "application/json",
-                    },
-                    body: JSON.stringify({
-                        data: {
-                            profileId: paramsData.userProfileId,
-                        },
-                    })
+            axios.post('https://us-central1-oceanfriends-71bae.cloudfunctions.net/get2daysmeal', {
+                data: {
+                    profileId: paramsData.userProfileId,
+                },
+            }, {
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "application/json",
+                    "accepts": "application/json",
                 }
-            )
-                .then((response) => {
-                    return response.json();
-                })
-                .then((data) => {
-                    console.log(data);
-                    setUserProfileData(data);
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
-
+            }).then(function (response) {
+                setUserProfileData(response.data)
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
 
             console.log(paramsData.userProfileId);
         }

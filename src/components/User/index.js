@@ -1,37 +1,23 @@
 import React, { useEffect, useState } from "react";
 import UserDataRender from "./UserProfile/components/UserDataRender";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const User = () => {
     const [userData, setUserData] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(
-            "https://us-central1-oceanfriends-71bae.cloudfunctions.net/getAccessProfiles",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "accepts": "application/json"
-                },
-                body: JSON.stringify({
-                    data: {
-                        userId: "sr4Z21Tqg0VupvjEDq5Bg51gosg2",
-                    },
-                }),
-            }
-        )
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data);
-                setUserData(data.result.result);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+        axios.post('https://us-central1-oceanfriends-71bae.cloudfunctions.net/getAccessProfiles', {
+            data: {
+                userId: "sr4Z21Tqg0VupvjEDq5Bg51gosg2",
+            },
+        }).then(function (response) {
+            setUserData(response.data.result.result)
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }, []);
 
     const profileDataClickHandler = (userProfileId) => {
