@@ -8,12 +8,12 @@ const User = () => {
 
     useEffect(() => {
         fetch(
-            "/getAccessProfiles",
+            "https://us-central1-oceanfriends-71bae.cloudfunctions.net/getAccessProfiles",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "accepts":"application/json"
+                    "accepts": "application/json"
                 },
                 body: JSON.stringify({
                     data: {

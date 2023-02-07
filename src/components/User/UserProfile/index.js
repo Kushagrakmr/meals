@@ -18,7 +18,7 @@ const UserProfile = () => {
     useEffect(() => {
         if (paramsData.userProfileId) {
             fetch(
-                "/get2daysmeal",
+                "https://us-central1-oceanfriends-71bae.cloudfunctions.net/get2daysmeal",
                 {
                     method: "POST",
                     headers: {
