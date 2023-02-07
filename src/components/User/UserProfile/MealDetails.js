@@ -5,7 +5,7 @@ const MealDetails = (props) => {
 
     return (
         <div>
-            {mealDetails.date ? (
+            {mealDetails ? (
                 <div>
                     <div>
                         <h3>
