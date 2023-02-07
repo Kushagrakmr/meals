@@ -21,8 +21,9 @@ const UserProfile = () => {
                 "https://us-central1-oceanfriends-71bae.cloudfunctions.net/get2daysmeal",
                 {
                     method: "POST",
+                    mode: 'no-cors',
                     headers: {
-                        "access-control-allow-origin": "*",
+                        "Access-Control-Allow-Origin": "*",
                         "Content-Type": "application/json",
                         "accepts": "application/json",
                     },
